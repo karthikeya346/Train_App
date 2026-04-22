@@ -1,4 +1,4 @@
-import java.util.Arrays;
+import java.util.Scanner;
 
 public class TrainApp {
 
@@ -6,26 +6,31 @@ public class TrainApp {
 
         System.out.println("=== Train Consist Management App ===");
 
-        // Array of bogie names
-        String[] bogieNames = {
-                "Sleeper",
-                "AC Chair",
-                "First Class",
-                "General",
-                "Luxury"
-        };
+        // Array of bogie IDs (unsorted)
+        String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
 
-        // Display original array
-        System.out.println("\nOriginal Bogie Names:");
-        System.out.println(Arrays.toString(bogieNames));
+        // User input
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\nEnter Bogie ID to search: ");
+        String searchKey = sc.nextLine();
 
-        // Sort using Arrays.sort()
-        Arrays.sort(bogieNames);
+        // Linear Search
+        boolean found = false;
 
-        // Display sorted array
-        System.out.println("\nSorted Bogie Names (Alphabetical):");
-        System.out.println(Arrays.toString(bogieNames));
+        for (int i = 0; i < bogieIds.length; i++) {
+            if (bogieIds[i].equals(searchKey)) {
+                found = true;
+                System.out.println("Bogie found at position: " + i);
+                break; // Early termination
+            }
+        }
 
-        System.out.println("\nSorting completed using Arrays.sort().");
+        if (!found) {
+            System.out.println("Bogie ID not found.");
+        }
+
+        System.out.println("\nSearch operation completed.");
+
+        sc.close();
     }
 }
