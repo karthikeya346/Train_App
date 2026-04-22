@@ -1,23 +1,36 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Scanner;
 
-public class Train_App {
+public class TrainApp {
 
     public static void main(String[] args) {
 
         System.out.println("=== Train Consist Management App ===");
 
-        Set<String> bogieIds = new HashSet<>();
+        // Array of bogie IDs (unsorted)
+        String[] bogieIds = {"BG101", "BG205", "BG309", "BG412", "BG550"};
 
-        bogieIds.add("BG101");
-        bogieIds.add("BG102");
-        bogieIds.add("BG103");
-        bogieIds.add("BG101");
-        bogieIds.add("BG102");
+        // User input
+        Scanner sc = new Scanner(System.in);
+        System.out.print("\nEnter Bogie ID to search: ");
+        String searchKey = sc.nextLine();
 
-        System.out.println("\nUnique Bogie IDs:");
-        System.out.println(bogieIds);
+        // Linear Search
+        boolean found = false;
 
-        System.out.println("Total unique bogies: " + bogieIds.size());
+        for (int i = 0; i < bogieIds.length; i++) {
+            if (bogieIds[i].equals(searchKey)) {
+                found = true;
+                System.out.println("Bogie found at position: " + i);
+                break; // Early termination
+            }
+        }
+
+        if (!found) {
+            System.out.println("Bogie ID not found.");
+        }
+
+        System.out.println("\nSearch operation completed.");
+
+        sc.close();
     }
 }
